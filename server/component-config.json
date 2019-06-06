@@ -1,6 +1,10 @@
 {
   "loopback-component-explorer": {
     "mountPath": "/chatvl",
-    "generateOperationScopedModels": true
+    "generateOperationScopedModels": true,
+    "auth": {
+      "in": "header",
+      "name": "authorization"
+    }
   }
 }
