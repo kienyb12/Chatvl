@@ -1,71 +1,111 @@
 {
-    "name": "User",
-    "description": "",
-    "base": "PersistedModel",
-    "idInjection": false,
-    "strict": true,
-    "options": {
-        "mysql": {
-            "table": "users"
-        }
-    },
-    "properties": {
-        "id": {
-            "type": "number",
-            "generated": true,
-            "primaryKey": true,
-            "allowNull": false,
-            "unique": true,
-            "autoIncrement": true
-        },
-        "Name": {
-            "type": "string"
-        }
-    },
-    "hidden": {},
-    "validations": {
-        "Name": {
-            "type": "string",
-            "description": "User account name",
-            "min": 6,
-            "max": 24
-        }
-    },
-    "relations": {
-        "accessTokens": {
-            "type": "hasMany",
-            "model": "AccessToken",
-            "foreignKey": "userId",
-            "options": {
-                "disableInclude": true
-            }
-        }
-    },
-    "acls": [],
-    "scopes": {},
-    "indexes": {},
-    "methods": {
-        "prototype.getProfile": {
-            "accepts": [],
-            "returns": {
-                "arg": "data",
-                "type": "User",
-                "root": true
-            },
-            "http": {
-                "verb": "get",
-                "path": "/profile"
-            },
-            "accessScopes": [
-                "read",
-                "read:profile"
-            ]
-        }
-    },
-    "remoting": {
-        "normalizeHttpPath": true
-    },
-    "http": {
-        "path": "/user"
+  "name": "User",
+  "description": "",
+  "base": "PersistedModel",
+  "idInjection": true,
+  "strict": true,
+  "options": {
+    "mysql": {
+      "table": "users"
     }
+  },
+  "properties": {
+    "id": {
+      "type": "number",
+      "dataType": "int",
+      "id": true,
+      "generated" : true,
+      "mysql": {
+        "dataType": "int"
+      }
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "mysql": {
+        "dataType": "varchar(100)"
+      }
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "index": {
+        "unique": true
+      },
+      "mysql": {
+        "dataType": "varchar(200)"
+      }
+    },
+    "password": {
+      "type": "string",
+      "required": true,
+      "default": null,
+      "mysql": {
+        "dataType": "varchar(200)"
+      }
+    },
+    "createdAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": true,
+      "mysql": {
+        "columnName": "created_at"
+      }
+    },
+    "updatedAt": {
+      "type": "number",
+      "dataType": "bigint",
+      "required": false,
+      "default": null,
+      "mysql": {
+        "columnName": "updated_at"
+      }
+    }
+  },
+  "hidden": {},
+  "validations": {
+    "name": {
+      "type": "string",
+      "description": "User account name",
+      "min": 6,
+      "max": 24
+    }
+  },
+  "relations": {
+    "accessTokens": {
+      "type": "hasMany",
+      "model": "AccessToken",
+      "foreignKey": "userId",
+      "options": {
+        "disableInclude": true
+      }
+    }
+  },
+  "acls": [],
+  "scopes": {},
+  "indexes": {},
+  "methods": {
+    "prototype.getProfile": {
+      "accepts": [],
+      "returns": {
+        "arg": "data",
+        "type": "User",
+        "root": true
+      },
+      "http": {
+        "verb": "get",
+        "path": "/profile"
+      },
+      "accessScopes": [
+        "read",
+        "read:profile"
+      ]
+    }
+  },
+  "remoting": {
+    "normalizeHttpPath": true
+  },
+  "http": {
+    "path": "/user"
+  }
 }

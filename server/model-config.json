@@ -24,7 +24,8 @@
       "remoting": {
         "sharedMethods": {
           "*": false,
-          "Login": true
+          "Login": true,
+          "Register": true
         }
       }
     }

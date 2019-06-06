@@ -32,7 +32,11 @@
   },
   "session": {},
   "auth": {
-    "loopback#token": {}
+    "./middleware/authorization": {
+      "paths": [
+        "/api/article/add"
+      ]
+    }
   },
   "parse": {},
   "routes": {

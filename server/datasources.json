@@ -6,10 +6,10 @@
   "mysqlDb": {
     "host": "127.0.0.1",
     "port": 3306,
-    "database": "Chatvl",
-    "password": "",
+    "database": "chatvl",
+    "password": "123789",
     "name": "mysqlDb",
     "connector": "mysql",
-    "user": "root"
+    "user": "tientv"
   }
 }
