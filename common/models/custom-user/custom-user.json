@@ -1,0 +1,26 @@
+{
+  "name": "CustomUser",
+  "base": "User",
+  "idInjection": true,
+  "strict": true,
+    "options": {
+        "mysql": {
+            "table": "customuser"
+        }
+    },
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true,
+      "autoIncrement": true
+    }
+  },
+  "validations": [],
+  "relations": {
+  },
+  "acls": [],
+  "methods": {},
+    "http": {
+        "path": "/customuser"
+    }
+}

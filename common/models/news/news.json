@@ -1,0 +1,65 @@
+{
+    "name": "News",
+    "description": "",
+    "base": "PersistedModel",
+    "idInjection": true,
+    "strict": true,
+    "options": {
+        "mysql": {
+            "table": "news"
+        }
+    },
+    "properties": {
+        "id": {
+            "type": "number",
+            "generated": true,
+            "primaryKey": true,
+            "allowNull": false,
+            "unique": true,
+            "autoIncrement": true
+        },
+        "title": {
+            "type": "string"
+        },
+        "content": {
+            "type": "string",
+            "mysql": {
+                "columnName": "content",
+                "dataType": "text"
+            }
+        },
+        "createdateAt": {
+            "type": "number",
+            "mysql": {
+                "columnName": "createdate_at"
+            }
+        }
+    },
+    "hidden": {},
+    "validations": {},
+    "relations": {},
+    "acls": [
+        {
+            "accessType": "*",
+            "principalType": "ROLE",
+            "principalId": "$everyone",
+            "permission": "DENY"
+        },
+        {
+            "accessType": "EXECUTE",
+            "principalType": "ROLE",
+            "principalId": "$authenticated",
+            "permission": "ALLOW",
+            "property": "find"
+        }
+    ],
+    "scopes": {},
+    "indexes": {},
+    "methods": {},
+    "remoting": {
+        "normalizeHttpPath": true
+    },
+    "http": {
+        "path": "/news"
+    }
+}

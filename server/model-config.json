@@ -1,0 +1,106 @@
+{
+  "_meta": {
+    "sources": [
+      "loopback/common/models",
+      "loopback/server/models",
+      "../common/models",
+      "./models",
+      "../common/models/user",
+      "../common/models/article",
+      "../common/models/custom-user",
+      "../common/models/news"
+    ],
+    "mixins": [
+      "loopback/common/mixins",
+      "loopback/server/mixins",
+      "../common/mixins",
+      "./mixins"
+    ]
+  },
+  "User": {
+    "dataSource": "mysqlDb",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "Login": true
+        }
+      }
+    }
+  },
+  "ACL": {
+    "dataSource": "db",
+    "public": false
+  },
+  "RoleMapping": {
+    "dataSource": "db",
+    "public": false,
+    "options": {
+      "strictObjectIDCoercion": true
+    }
+  },
+  "Role": {
+    "dataSource": "db",
+    "public": false
+  },
+  "Article": {
+    "dataSource": "mysqlDb",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "getListArticle": true,
+          "postArticle": true
+        }
+      }
+    }
+  },
+  "News": {
+    "dataSource": "mysqlDb",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "getListNews": true,
+          "postNews": true
+        }
+      }
+    }
+  },
+  "CustomUser": {
+    "dataSource": "mysqlDb",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "getListCustomUser": true,
+          "postCustomUser": true
+        }
+      }
+    }
+  },
+  "AccessToken": {
+    "dataSource": "db",
+    "public": true,
+    "options": {
+      "remoting": {
+        "sharedMethods": {
+          "*": false,
+          "getListCustomUser": true,
+          "postCustomUser": true
+        }
+      }
+    },
+    "relations": {
+      "user": {
+        "type": "belongsTo",
+        "model": "CustomUser",
+        "foreignKey": "userId"
+      }
+    }
+  }
+}

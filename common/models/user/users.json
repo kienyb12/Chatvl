@@ -1,0 +1,71 @@
+{
+    "name": "User",
+    "description": "",
+    "base": "PersistedModel",
+    "idInjection": false,
+    "strict": true,
+    "options": {
+        "mysql": {
+            "table": "users"
+        }
+    },
+    "properties": {
+        "id": {
+            "type": "number",
+            "generated": true,
+            "primaryKey": true,
+            "allowNull": false,
+            "unique": true,
+            "autoIncrement": true
+        },
+        "Name": {
+            "type": "string"
+        }
+    },
+    "hidden": {},
+    "validations": {
+        "Name": {
+            "type": "string",
+            "description": "User account name",
+            "min": 6,
+            "max": 24
+        }
+    },
+    "relations": {
+        "accessTokens": {
+            "type": "hasMany",
+            "model": "AccessToken",
+            "foreignKey": "userId",
+            "options": {
+                "disableInclude": true
+            }
+        }
+    },
+    "acls": [],
+    "scopes": {},
+    "indexes": {},
+    "methods": {
+        "prototype.getProfile": {
+            "accepts": [],
+            "returns": {
+                "arg": "data",
+                "type": "User",
+                "root": true
+            },
+            "http": {
+                "verb": "get",
+                "path": "/profile"
+            },
+            "accessScopes": [
+                "read",
+                "read:profile"
+            ]
+        }
+    },
+    "remoting": {
+        "normalizeHttpPath": true
+    },
+    "http": {
+        "path": "/user"
+    }
+}
